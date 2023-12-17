@@ -2,12 +2,12 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 
 /**
- * Deploys a contract named "YourContract" using the deployer account and
+ * Deploys a contract named "ZeroToBuidlGuidl" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployGraveboxd: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -21,10 +21,28 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("YourContract", {
+  // UNCOMMENT THIS FOR DEPLOYING ON MAINNET
+
+  const reverseRecordsAddress = "0x3671aE578E63FdF66ad4F3E12CC0c0d71Ac7510C";
+
+  // UNCOMMENT THIS FOR DEPLOYING ON LOCALHOST
+
+  // await deploy("ReverseRecords", {
+  //   // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
+  //   from: deployer,
+  //   // args: [],
+  //   log: true,
+  // });
+
+  // const reverseRecords = await hre.ethers.getContract("ReverseRecords", deployer);
+  // const reverseRecordsAddress = reverseRecords.address;
+
+  // DEPLOY THE CONTRACT
+
+  await deploy("Graveboxd", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [reverseRecordsAddress],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -35,8 +53,8 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
 };
 
-export default deployYourContract;
+export default deployGraveboxd;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+deployGraveboxd.tags = ["Graveboxd"];
